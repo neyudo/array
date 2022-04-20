@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="css/styles.css"> -->
+    <!-- <link rel="stylesheet" href="css/normalize.css"> -->
+    <title>Ejercicios Javascript 1</title>
+</head>
+
+<body>
+    <script>
+        const obst = ["Ananas", "Apfel", "Aprikose", "Avocado", "Banane", "Birne", "Brombeere", "Cranberry", "Dattel",
+            "Eierpflaume", "Erdbeere", "Feige", "Granatapfel", "Grapefruit", "Hagebute", "Heidelbeere", "Himbeere",
+            "Holunder", "Honigmelone", "Jackfrucht"
+        ];
+        /* Die length Eigenschaft eines Objektes vom Typ Array setzt die Anzahl der Elemente in einem Array oder gibt diese Anzahl zurück. Der Wert ist eine vorzeichenlose, 32-Bit Ganzzahl, welche größer als der größte Index im Array ist. */
+        console.log(obst.length);
+        //Greifen Sie über die Indexposition auf ein Array-Element zu
+        let erstObst = obst[0];
+        // länge - 1 also das letzte, weil ein Array begind immer mit ein 0
+        let last = obst[obst.length - 1];
+        console.log(last);
+        console.log(erstObst);
+        /* Die push() Methode fügt ein oder mehr Elemente am Ende eines Arrays hinzu und gibt die neue Länge des Arrays zurück. */
+        let neueLaenge = obst.push("Limette");
+        console.log(neueLaenge);
+        console.log(obst);
+
+        for (const iterator of obst) {
+            console.log(iterator);
+        }
+        // Wie ein for of 
+        obst.forEach(function (items, index, array) {
+            console.log(items, index);
+        })
+        //Die pop() Methode entfernt das letzte Element eines Arrays und gibt dieses zurück. Diese Methode ändert die Länge des Arrays.
+        let laesteWeg = obst.pop();
+        //und gibt dieses zurück Achtung
+        console.log(laesteWeg);
+        obst.forEach(function (items, index, array) {
+            console.log(items, index);
+        })
+        //Die Methode shift() entfernt das erste Element eines Arrays und gibt dieses Element zurück. Diese Methode verändert die Länge des Arrays.
+        let ersteObstWeg = obst.shift();
+        //und gibt dieses zurück
+        console.log(ersteObstWeg);
+        obst.forEach(function (items, index, array) {
+            console.log(items, index);
+        })
+        //Die unshift() Methode fügt ein oder mehrere Elemente am Anfang eines Array hinzu und gibt die neue Länge des Arrays zurück.
+        let hinzufuegenObstAnAnfag = obst.unshift("Mango");
+        //gibt die neue Länge des Arrays zurück.
+        console.log(hinzufuegenObstAnAnfag);
+        obst.forEach(function (items, index, array) {
+            console.log(items, index);
+        })
+        //Die Methode findIndex() gibt den Index des ersten Elements im Array zurück, das die bereitgestellte Testfunktion erfüllt. Andernfalls wird -1 zurückgegeben, um anzuzeigen, dass kein Element den Test bestanden hat.
+        const findenInWelchePosition = (element) => element === "Holunder";
+        let woIst = obst.findIndex(findenInWelchePosition);
+        console.log(woIst);
+        //Die splice() Methode ändert den Inhalt eines Arrays durch das Entfernen vorhandener Elemente und/oder Hinzufügen neuer Elemente.
+        /* Syntax
+        array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+        start
+        Index ab welchem das Array geändert werden soll. Falls start größer als die Länge des Arrays ist, wird start auf
+        die Länge des Arrays gesetzt.
+        Falls start negativ ist, beginnt die Änderung entsprechend viele Stellen rückwärts vom Ende des Arrays (d.h. hat
+        start den Wert -n ist dies gleichbedeutend mit array.length - n) und wird auf 0 gesetzt wenn der absolute Wert
+        von start größer als die Länge des Arrays ist.
+        deleteCount Optional
+        Gibt die Anzahl der zu entfernenden alten Array Elemente an.
+        Wenn deleteCount weggelassen wird oder wenn der Wert größer oder gleich array.length - start ist (d. h. wenn der
+        Wert größer oder gleich der Anzahl der von start aus verbleibenden Elemente ist), wird das ganze Array ab dem
+        Index start gelöscht.
+        Wenn deleteCount 0 oder negativ ist, werden keine Elemente entfernt. In diesem Fall sollte man mindestens ein
+        neues Element als weiteren Parameter übergeben, da das Array sonst nicht geändert wird.
+        item1, item2, ... Optional
+        Die Elemente, die dem Array ab dem Index start hinzugefügt werden sollen. Falls keine Elemente angegeben werden,
+        entfernt splice lediglich Elemente des Arrays. */
+        const monate = ["Januar", "Mango", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober",
+            "Montag", "Dezember"
+        ];
+        const feb = "Februar";
+        const nob = "November"
+        let suchtMontag = (element) => element === "Montag";
+        let woIstMontag = monate.findIndex(suchtMontag);
+        monate.splice(1, 0, feb);
+        monate.splice(woIstMontag, 1, nob);
+        monate.splice(-2, 1)
+        //Ein item Löschen
+        /* let suchtMango = (element) => element === "Mango";
+        let woIstMango = monate.findIndex(suchtMango);
+        monate.splice(woIstMango,1); */
+        monate.forEach(function bs(items, index) {
+            console.log(items, index);
+        })
+        //Spreads: Kopieren von ein Array damit ich mit diese Kopie arbeiten kann ohne die andere zu manipulieren
+        const numero = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        const numero2 = [...numero];
+        numero2[0] = 10;
+        numero.forEach(function bs(items, index) {
+            console.log(items, index);
+        })
+        numero2.forEach(function bs(items, index) {
+            console.log(items, index);
+        })
+        //Spreads: Array futionieren
+        const numero3 = [10, 11, 12, 13, 15]
+        const numeroPlusnumero3 = [...numero, ...numero3];
+        numeroPlusnumero3.forEach(function bs(items, index) {
+            console.log(items, index);
+        })
+        //Spreads: Array verknöpfen und noch mehn Info hinzugefügen
+        const numeroPlusMehr = [...numero, "Hallo", ...numero3, 26];
+        numeroPlusMehr.forEach(function bs(items, index) {
+            console.log(items, index);
+        })
+        //Spreads: implememtiert in eine function
+        function adieren(a, b, c, d, e) {
+            return a + b + c + d + e;
+        }
+        console.log(adieren(...numero3));
+        //Mehr Info über Sreads https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/Spread_syntax 
+        /* ___________________________________ */
+        //Zugriff auf Array-Elemente
+        /* JavaScript-Arrays sind nullindiziert: Das erste Element eines Arrays befindet sich am Index 0, das letzte Element befindet sich an demjenigen Index, der dem Wert der Eigenschaft length des Arrays minus 1 entspricht. Die Verwendung einer ungültigen Indexnummer gibt undefined zurück. */
+        //https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array#accessing_array_elements
+        console.log(numero3[0]);
+        console.log(numero3[1]);
+        console.log(numero3[2]);
+        const fruits = ["Ananas", "Apfel", "Aprikose", "Avocado", "Banane", "Birne", "Brombeere", "Cranberry", "Dattel"];
+        fruits[5] = 'mango';
+        console.log(fruits[5]); // 'mango'
+        console.log(Object.keys(fruits)); // ['0', '1', '2', '5']
+        console.log(fruits.length); // 6
+    </script>
+</body>
